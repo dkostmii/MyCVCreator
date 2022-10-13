@@ -1,4 +1,4 @@
-#MyCVCreator
+# MyCVCreator
 
 Application for creating CVs from data.
 Makes a CV with two sidebar and main content containers.
