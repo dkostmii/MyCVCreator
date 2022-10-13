@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
+
+* {
+  box-sizing: content-box;
+}
+
+body {
+  --padding: 10mm;
+  padding: var(--padding);
+  width: calc(210mm - 2 * var(--padding));
+  height: calc(297mm - 2 * var(--padding));
+  font-family: "Roboto", sans-serif;
+
+  padding: var(--padding);
+  margin: 0;
+
+  background: #EEE;
+
+  overflow: visible !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0.5em 0 1em 0;
+}
+
+p {
+  margin: 0.25em 0 0.5em 0;
+}
+
+header {
+  font-family: "Roboto Mono", monospace;
+}
+
+body > header > * {
+  text-align: right;
+}
+.main-container {
+  display: flex;
+  align-items: baseline;
+  gap: 10%;
+}
+
+.main-container > #main-content article > header {
+  font-size: 1.5rem;
+}
+
+.main-container header:first-child {
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: #AAA;
+
+  /* !!! Firefox for Android !!! */
+  text-decoration-thickness: 0.075em;
+  text-underline-offset: 0.5em;
+}
+
+/*
+.main-container header:first-child > *:after {
+  content: '          ';
+  white-space: pre;
+}*/
+
+ul:not(ul ul):not(ol ul), ol:not(ol ol):not(ul ol) {
+  padding: 0;
+  margin: 0;
+}
+
+ul ul, ol ul, ol ol, ul ol {
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+  padding-left: 0.85em;
+}
+
+ul > li:not(:last-child), ol > li:not(:last-child) {
+  margin-bottom: 0.4em;
+}
+
+#sidebar ul, #sidebar ol {
+  list-style-type: none;
+}
+
+.together {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 15%;
+}
+
+.together > :not(header *) {
+  font-size: 0.75em;
+}
+
+.corner-decoration {
+  border-style: none none solid solid;
+  border-width: 0.075em;
+  border-color: #AAA;
+  z-index: 999;
+}
+
+.labeled-item > label {
+  font-weight: 700;
+}

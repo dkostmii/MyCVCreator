@@ -1,0 +1,74 @@
+<div class="d-flex flex-column mb-3">
+  <div class="d-flex flex-row">
+    <header class="me-3">
+      <h4>{{ title }}</h4>
+    </header>
+    <button class="btn btn-primary" (click)="addSection()">
+      <i class="bi bi-plus"></i>
+    </button>
+  </div>
+
+  <div class="d-flex flex-column mb-3 ms-3" *ngFor="let s of sections;">
+    <!-- Section scope -->
+
+    <div class="d-flex flex-row align-items-baseline mb-3 mt-3">
+      <h6 class="me-3">Section {{ s.id + 1 }}</h6>
+      <button class="btn btn-danger" (click)="removeSection(s.id)"><i class="bi bi-trash-fill"></i></button>
+    </div>
+
+    <!-- Section title -->
+    <div class="mb-3 d-flex flex-row">
+      <div>
+        <label class="form-label" for="section-title">Section title</label>
+        <input type="text" class="form-control" id="section-title" placeholder="Skills" [ngModel]="s.title" (ngModelChange)="s.title = $event; updateSection(s)" />
+      </div>
+    </div>
+    
+
+    <div class="d-flex flex-row align-items-baseline mb-3 mt-3">
+
+      <h6 class="me-3">Section items</h6>
+      <div class="btn-group" role="group">
+        <button class="btn btn-link" (click)="addTextSectionItem(s)"><i class="bi bi-plus"></i> Add text</button>
+        <button class="btn btn-link" (click)="addBulletSectionItem(s)"><i class="bi bi-plus"></i> Add bullet list</button>
+        <button class="btn btn-link" (click)="addLabeledSectionItem(s)"><i class="bi bi-plus"></i> Add labeled text</button>
+      </div>
+    </div>
+
+    <div *ngFor="let i of s.items;">
+      <!-- Section item scope -->
+      <div class="d-flex flex-row align-items-baseline mb-3 mt-3">
+        <h6 class="me-3">Section item {{ i.id + 1 }}</h6>
+        <button class="btn btn-danger" (click)="removeSectionItem(i.id, s)"><i class="bi bi-trash-fill"></i></button>
+      </div>
+
+      <div class="mb-3 d-flex flex-row" *ngIf="i.type === 'text'">
+        <div>
+          <label class="form-label" for="section-item-text">Text</label>
+          <input type="text" class="form-control" id="section-item-text" placeholder="Lorem ipsum" [ngModel]="i.text" (ngModelChange)="i.text = $event; updateSection(s)" />
+        </div>
+      </div>
+
+      <div class="mb-3 d-flex flex-row" *ngIf="i.type === 'bullet'">
+        <div>
+          <ul class="list-group mb-3">
+            <li class="list-group-item" *ngFor="let li of i.list">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="My Pet Project" [ngModel]="li.text" (ngModelChange)="li.text = $event; updateSection(s)" />
+                <button class="btn btn-danger" (click)="removeListItemBullet(li.id, i, s)"><i class="bi bi-trash-fill"></i></button>
+              </div>
+            </li>
+          </ul>
+          <button class="btn btn-primary" (click)="addListItemBullet(i, s)"><i class="bi bi-plus"></i> Add list item</button>
+        </div>
+      </div>
+
+      <div class="input-group mb-3 w-50" *ngIf="i.type === 'labeled'">
+        <input type="text" class="form-control" id="section-item-label" placeholder="GitHub" [ngModel]="i.label" (ngModelChange)="i.label = $event; updateSection(s)" />
+        <span class="input-group-text">:</span>
+        <input type="text" class="form-control" id="section-item-text" placeholder="/johnsonuk" [ngModel]="i.text" (ngModelChange)="i.text = $event; updateSection(s)" />
+      </div>
+    </div>
+  </div>
+
+  </div>
